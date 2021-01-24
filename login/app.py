@@ -1,6 +1,8 @@
 import os
 import hashlib
 import uuid
+import json
+
 from flask import Flask, abort, request, jsonify, g, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_httpauth import HTTPBasicAuth
@@ -17,8 +19,15 @@ app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 # extensions
 db = SQLAlchemy(app)
 auth = HTTPBasicAuth()
-tokens = { 1:'test'}
-users = {'test':1}
+tokens = { 1:'test'.encode('utf-8', 'ignore')}
+users = {'test'.encode('utf-8', 'ignore'):1}
+
+def dump_datetime(value):
+    """Deserialize datetime object into string form for JSON processing."""
+    if value is None:
+        return None
+    return [value.strftime("%Y-%m-%d"), value.strftime("%H:%M:%S")]
+
 
 def init_db():
     """For use on command line for setting up
@@ -68,6 +77,45 @@ class User(db.Model):
         user = User.query.get(data['id'])
         return user
 
+class ExchangeTransaction(db.Model):
+    __tablename__ = 'exchange_transactions'
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.String(32), index = True)
+    from_coin = db.Column(db.String(32), index = True)
+    to_coin = db.Column(db.String(32), index = True)
+    amount = db.Column(db.Float, default=0)
+    time = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+    @property
+    def serialize(self):
+       """Return object data in easily serializable format"""
+       return {
+           'from_coin'         : self.from_coin,
+           'to_coin'           : self.to_coin,
+           'amount'         : self.amount,
+           'time'              : dump_datetime(self.time),
+       }
+
+
+class TransferTransaction(db.Model):
+    __tablename__ = 'transfer_transactions'
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.String(32), index = True)
+    username = db.Column(db.String(32), index = True)
+    coin = db.Column(db.String(32), index = True)
+    amount = db.Column(db.Float, default=0)
+    time = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+    @property
+    def serialize(self):
+       """Return object data in easily serializable format"""
+       return {
+           'username'       : self.username,
+           'coin'           : self.coin,
+           'amount'         : self.amount,
+           'time'           : dump_datetime(self.time),
+       }
+
 
 @app.route('/')
 def hello_world():
@@ -115,24 +163,23 @@ def get_user(token):
     token = token.encode('utf-8', 'ignore')
     print(users)
     if token not in users:
+        print("Invalid token:" + str(token))
         return 'Invalid token'
     user = User.query.get(users[token])
     if not user:
         abort(400)
-    return jsonify({'username': user.username})
 
-@app.route('/users/balance/<string:token>')
-def get_balance(token):
-    if token is None:
-        return 'Invalid request'
-    if token not in users:
-        return 'Invalid token'
-    id = users[token]
-    user = User.query.get(id)
-    return jsonify({'id': user.username,
+    exchange_transactions = list(ExchangeTransaction.query.filter_by(user_id=user.id).all())
+    transfer_transactions = list(TransferTransaction.query.filter_by(user_id=user.id).all())
+    transfer_transactions = [i.serialize for i in transfer_transactions]
+    exchange_transactions = [i.serialize for i in exchange_transactions]
+
+    return jsonify({'username': user.username,
                     'eth': user.eth_balance,
                     'btc': user.btc_balance,
-                    'usd': user.usd_balance
+                    'usd': user.usd_balance,
+                    'exchange':exchange_transactions, 
+                    'transfer':transfer_transactions,
                     })
 
 def send_coin(to_user, from_user, coin, amount):
@@ -154,14 +201,28 @@ def send_coin(to_user, from_user, coin, amount):
             return 'Insufficient funds.'
         from_user.usd_balance -= amount
         to_user.usd_balance += amount
+
+    transaction = TransferTransaction(
+        user_id = from_user.id,
+        coin = coin, username = to_user.username, amount = -amount)
+    
+    db.session.add(transaction)
+
+    transaction = TransferTransaction(
+        user_id = to_user.id,
+        coin = coin, username = from_user.username, amount = amount)
+
+    db.session.add(transaction)
     db.session.commit()
     return 'Transfer made.'
 
 @app.route('/users/send/<string:token>')
 def send(token):
+    token = token.encode('utf-8', 'ignore')
     if token is None:
         return 'Invalid request'
     if token not in users:
+        print(users)
         return 'Invalid token'
     to_username = request.args.get('username')
     coin = request.args.get('coin')
@@ -172,8 +233,9 @@ def send(token):
     accepted_coins = ['usd', 'eth', 'btc']
 
     try:
-        amount = int(amount)
+        amount = float(amount)
     except:
+        print(amount)
         return 'Invalid amount'
 
     if amount < 0 or coin not in accepted_coins:
@@ -220,10 +282,18 @@ def exg_coin(user, to_coin, from_coin, amount):
     if to_coin == 'usd':
         user.usd_balance += recv_amount
 
+    transaction = ExchangeTransaction(
+                               user_id = user.id,
+                               from_coin = from_coin, to_coin = to_coin,
+                               amount = amount)
+    db.session.add(transaction)
+    db.session.commit()
+
     return 'Exchange made.'
     
 @app.route('/users/exchange/<string:token>')
 def exchange(token):
+    token = token.encode('utf-8', 'ignore')
     from_coin = request.args.get('from_coin')
     to_coin = request.args.get('to_coin')
     amount = request.args.get('amount')
@@ -233,7 +303,7 @@ def exchange(token):
     from_coin = from_coin.lower()
     accepted_coins = ['usd', 'eth', 'btc']
     try:
-        amount = int(amount)
+        amount = float(amount)
     except:
         return 'Invalid amount'
     if amount < 0 or from_coin not in accepted_coins or to_coin not in accepted_coins:

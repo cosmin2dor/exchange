@@ -1,44 +1,114 @@
 {% extends 'base.html' %}
 
-{% block title %} Login {% endblock %}
+{% block title %} Exchange {% endblock %}
+
+{% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Bootstrap Admin</title>
-  </head>
-<body>
+
+<link rel="stylesheet" type="text/css" href="{% static 'crypto-icons/styles.css' %}">
+
 <div class="jumbotron text-center">
-    <h2>Welcome <span class="badge badge-secondary">{{user.username}}</span></h2>
-    <p>Some subtitle</p>
-  </div>
-  
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-2">
-        <a href="/send" class="btn btn-primary">
-            Send
-        </a>
-        <h1></h1>
-        <a href="/exchange" class="btn btn-primary">
-            Exchange
-        </a>
-      </div>
-      <div class="col-sm-5">
-        <h3>Current Balance</h3>
-        <p>Lorem ipsum dolor..</p>
-      </div>
-      <div class="col-sm-5">
-        <h3>Exhange Rates</h3>
-        <p>Lorem ipsum dolor..</p>
+    <div class="dropdown">
+      <h2>Welcome, {{user.username}}!</h2>
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Logout
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        <button class="dropdown-item" type="button" onclick="window.location.href='/logout';">Logout</button>
       </div>
     </div>
   </div>
-</body>
-                    
-                    
-
+  
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-6">
+        <h3>Current Balance</h3>
+        <h5>USD: {{user.usd}} <i class="fas fa-dollar-sign"></i></h5>
+        <h5>BTC: {{user.btc}} <i class="fab fa-bitcoin"></i></h5>
+        <h5>ETH: {{user.eth}} <i class="fab fa-ethereum"></i></h5>
+      </div>
+      <div class="col-6">
+        <h3>Exhange Rates</h3>
+        <h5>ETH: ${{ eth_price|floatformat:2 }}</h5>
+        <h5>BTC: ${{ btc_price|floatformat:2 }}</h5>
+      </div>
+    </div>
+      <div class="row justify-content-between">
+      <div class="col-6">
+        <h3>Send</h3>
+        <form method="post">
+          {% csrf_token %}
+          {{ send_form|crispy }}
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </div>
+      <div class="col">
+        <h3>Transfer History</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">Coin</th>
+              <th scope="col">Amount</th>
+              <th scope="col">To</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for trsf in user.transfer %}
+            <tr>
+              <td>{{ trsf.time.0 }}</td>
+              <td>{{ trsf.time.1 }}</td>
+              <td>{{ trsf.coin }}</td>
+              <td>{{ trsf.amount }}</td>
+              <td>{{ trsf.username }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      </div>
+    
+      <div class="row justify-content-md-center">
+      <div class="col-6">
+        <h3>Exchange</h3>
+        <form method="post">
+          {% csrf_token %}
+          {{ exchange_form|crispy }}
+          <button type="submit" class="btn btn-primary">Exchange</button>
+        </form>
+      </div>
+      <div class="col-6">
+        <h3>Exchange History</h3>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Time</th>
+              <th scope="col">From Coin</th>
+              <th scope="col">To Coin</th>
+              <th scope="col">To</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for exch in user.exchange %}
+            <tr>
+              <td>{{ exch.time.0 }}</td>
+              <td>{{ exch.time.1 }}</td>
+              <td>{{ exch.from_coin }}</td>
+              <td>{{ exch.to_coin }}</td>
+              <td> {{ exch.amount }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      </div>
+      </div>
+      <br>
+      <br>
+      <br>
 
 {% endblock %}

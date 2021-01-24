@@ -45,11 +45,11 @@ def get_price(id):
     return str(price)
 
 @app.route('/eth')
-@cache.cached(timeout=120)
+@cache.cached(timeout=360)
 def eth():
     return get_price(ETH_ID)
 
 @app.route('/btc')
-@cache.cached(timeout=120)
+@cache.cached(timeout=360)
 def btc():
     return get_price(BTC_ID)
