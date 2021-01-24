@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap Admin</title>
+  </head>
+<body>
+<div class="jumbotron text-center">
+    <h2>Welcome <span class="badge badge-secondary">{{user.username}}</span></h2>
+    <p>Some subtitle</p>
+  </div>
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+        <a href="/send" class="btn btn-primary">
+            Send
+        </a>
+        <h1></h1>
+        <a href="/exchange" class="btn btn-primary">
+            Exchange
+        </a>
+      </div>
+      <div class="col-sm-5">
+        <h3>Current Balance</h3>
+        <p>Lorem ipsum dolor..</p>
+      </div>
+      <div class="col-sm-5">
+        <h3>Exhange Rates</h3>
+        <p>Lorem ipsum dolor..</p>
+      </div>
+    </div>
+  </div>
+</body>
+                    
+                    
+
+
+{% endblock %}
