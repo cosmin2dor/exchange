@@ -55,8 +55,8 @@ def get_prices():
     eth_price = 0
     btc_price = 0
     try:
-        eth_price = float(requests.get('http://54.93.120.171:8081/eth').text)
-        btc_price = float(requests.get('http://54.93.120.171:8081/btc').text)
+        eth_price = float(requests.get('http://localhost:8081/eth').text)
+        btc_price = float(requests.get('http://localhost:8081/btc').text)
     except:
         traceback.print_exc()
     return eth_price, btc_price

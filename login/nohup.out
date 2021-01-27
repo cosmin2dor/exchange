@@ -1,0 +1,72 @@
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:8000/ (Press CTRL+C to quit)
+ * Restarting with stat
+127.0.0.1 - - [27/Jan/2021 16:32:22] "[35m[1mGET /users/login?username=test&password=test HTTP/1.1[0m" 500 -
+Error on request:
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/login/app.py", line 7, in <module>
+    from flask_sqlalchemy import SQLAlchemy
+ModuleNotFoundError: No module named 'flask_sqlalchemy'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/werkzeug/serving.py", line 323, in run_wsgi
+    execute(self.server.app)
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/werkzeug/serving.py", line 312, in execute
+    application_iter = app(environ, start_response)
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/cli.py", line 338, in __call__
+    self._flush_bg_loading_exception()
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/cli.py", line 326, in _flush_bg_loading_exception
+    reraise(*exc_info)
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/cli.py", line 314, in _load_app
+    self._load_unlocked()
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/cli.py", line 330, in _load_unlocked
+    self._app = rv = self.loader()
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/cli.py", line 392, in load_app
+    app = locate_app(self, import_name, None, raise_if_not_found=False)
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/cli.py", line 245, in locate_app
+    raise NoAppException(
+flask.cli.NoAppException: While importing "app", an ImportError was raised:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/cli.py", line 240, in locate_app
+    __import__(module_name)
+  File "/home/ubuntu/exchange/login/app.py", line 7, in <module>
+    from flask_sqlalchemy import SQLAlchemy
+ModuleNotFoundError: No module named 'flask_sqlalchemy'
+127.0.0.1 - - [27/Jan/2021 16:32:24] "[35m[1mGET /users/login?username=test&password=test HTTP/1.1[0m" 500 -
+Error on request:
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/login/app.py", line 7, in <module>
+    from flask_sqlalchemy import SQLAlchemy
+ModuleNotFoundError: No module named 'flask_sqlalchemy'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/werkzeug/serving.py", line 323, in run_wsgi
+    execute(self.server.app)
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/werkzeug/serving.py", line 312, in execute
+    application_iter = app(environ, start_response)
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/cli.py", line 343, in __call__
+    rv = self._load_unlocked()
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/cli.py", line 330, in _load_unlocked
+    self._app = rv = self.loader()
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/cli.py", line 392, in load_app
+    app = locate_app(self, import_name, None, raise_if_not_found=False)
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/cli.py", line 245, in locate_app
+    raise NoAppException(
+flask.cli.NoAppException: While importing "app", an ImportError was raised:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/.local/lib/python3.8/site-packages/flask/cli.py", line 240, in locate_app
+    __import__(module_name)
+  File "/home/ubuntu/exchange/login/app.py", line 7, in <module>
+    from flask_sqlalchemy import SQLAlchemy
+ModuleNotFoundError: No module named 'flask_sqlalchemy'

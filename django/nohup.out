@@ -1207,3 +1207,581 @@ http://localhost:8000/users/eyJhbGciOiJIUzUxMiIsImlhdCI6MTYxMTQ4MzQzMSwiZXhwIjox
 [24/Jan/2021 11:12:08] "GET / HTTP/1.1" 302 0
 [24/Jan/2021 11:12:08] "GET /login/ HTTP/1.1" 200 3716
 [24/Jan/2021 11:12:14] "POST /login/ HTTP/1.1" 200 3866
+Watching for file changes with StatReloader
+[27/Jan/2021 16:31:04] "GET / HTTP/1.1" 302 0
+[27/Jan/2021 16:31:04] "GET /login/ HTTP/1.1" 200 3716
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 169, in _new_conn
+    conn = connection.create_connection(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 96, in create_connection
+    raise err
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 86, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 699, in urlopen
+    httplib_response = self._make_request(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 394, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 234, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/usr/lib/python3.8/http/client.py", line 1255, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1301, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1250, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1010, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.8/http/client.py", line 950, in send
+    self.connect()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 200, in connect
+    conn = self._new_conn()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 181, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f9a14b59c70>: Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 755, in urlopen
+    retries = retries.increment(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 573, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /users/login?username=cos&password=abc (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a14b59c70>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/exchange/django/core/views.py", line 128, in login
+    response = requests.get(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /users/login?username=cos&password=abc (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a14b59c70>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[27/Jan/2021 16:31:12] "POST /login/ HTTP/1.1" 500 172892
+Not Found: /favicon.ico
+[27/Jan/2021 16:31:12] "GET /favicon.ico HTTP/1.1" 404 2391
+Not Found: /favicon.ico
+[27/Jan/2021 16:31:12] "GET /favicon.ico HTTP/1.1" 404 2391
+[27/Jan/2021 16:31:23] "GET / HTTP/1.1" 302 0
+[27/Jan/2021 16:31:23] "GET /login/ HTTP/1.1" 200 3716
+[27/Jan/2021 16:31:23] "GET /static/main.css HTTP/1.1" 200 314
+[27/Jan/2021 16:31:23] "GET /static/login.css HTTP/1.1" 200 1151
+[27/Jan/2021 16:31:23] "GET /login/ HTTP/1.1" 200 3716
+[27/Jan/2021 16:31:24] "GET /static/img/exchange.png HTTP/1.1" 200 43982
+[27/Jan/2021 16:31:30] "GET /signup HTTP/1.1" 301 0
+[27/Jan/2021 16:31:30] "GET /signup/ HTTP/1.1" 200 4568
+[27/Jan/2021 16:31:49] "GET / HTTP/1.1" 302 0
+[27/Jan/2021 16:31:50] "GET /login/ HTTP/1.1" 200 3716
+[27/Jan/2021 16:31:51] "GET / HTTP/1.1" 302 0
+[27/Jan/2021 16:31:52] "GET /login/ HTTP/1.1" 200 3716
+[27/Jan/2021 16:31:52] "GET /static/main.css HTTP/1.1" 200 314
+[27/Jan/2021 16:31:52] "GET /static/login.css HTTP/1.1" 200 1151
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 169, in _new_conn
+    conn = connection.create_connection(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 96, in create_connection
+    raise err
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 86, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 699, in urlopen
+    httplib_response = self._make_request(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 394, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 234, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/usr/lib/python3.8/http/client.py", line 1255, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1301, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1250, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1010, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.8/http/client.py", line 950, in send
+    self.connect()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 200, in connect
+    conn = self._new_conn()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 181, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f9a1427f280>: Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 755, in urlopen
+    retries = retries.increment(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 573, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /users/login?username=test&password=test (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a1427f280>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/exchange/django/core/views.py", line 128, in login
+    response = requests.get(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /users/login?username=test&password=test (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a1427f280>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[27/Jan/2021 16:32:02] "POST /login/ HTTP/1.1" 500 173207
+Not Found: /favicon.ico
+[27/Jan/2021 16:32:03] "GET /favicon.ico HTTP/1.1" 404 2396
+Not Found: /TP/public/index.php
+[27/Jan/2021 16:32:12] "GET /TP/public/index.php HTTP/1.1" 404 2415
+Not Found: /TP/index.php
+[27/Jan/2021 16:32:12] "GET /TP/index.php HTTP/1.1" 404 2394
+Not Found: /thinkphp/html/public/index.php
+[27/Jan/2021 16:32:12] "GET /thinkphp/html/public/index.php HTTP/1.1" 404 2448
+Not Found: /html/public/index.php
+[27/Jan/2021 16:32:13] "GET /html/public/index.php HTTP/1.1" 404 2421
+Not Found: /public/index.php
+[27/Jan/2021 16:32:14] "GET /public/index.php HTTP/1.1" 404 2406
+Not Found: /TP/html/public/index.php
+[27/Jan/2021 16:32:14] "GET /TP/html/public/index.php HTTP/1.1" 404 2430
+Not Found: /elrekt.php
+[27/Jan/2021 16:32:16] "GET /elrekt.php HTTP/1.1" 404 2388
+Not Found: /index.php
+[27/Jan/2021 16:32:16] "GET /index.php HTTP/1.1" 404 2385
+[27/Jan/2021 16:32:16] "GET / HTTP/1.1" 302 0
+[27/Jan/2021 16:32:17] "GET /login/ HTTP/1.1" 200 3716
+[27/Jan/2021 16:32:22] "POST /login/ HTTP/1.1" 302 0
+[27/Jan/2021 16:32:22] "GET / HTTP/1.1" 302 0
+[27/Jan/2021 16:32:22] "GET /login/ HTTP/1.1" 200 3716
+[27/Jan/2021 16:32:24] "POST /login/ HTTP/1.1" 302 0
+[27/Jan/2021 16:32:25] "GET / HTTP/1.1" 302 0
+[27/Jan/2021 16:32:25] "GET /login/ HTTP/1.1" 200 3716
+[27/Jan/2021 16:32:46] "GET /login HTTP/1.1" 301 0
+[27/Jan/2021 16:32:46] "GET /login/ HTTP/1.1" 200 3716
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 169, in _new_conn
+    conn = connection.create_connection(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 96, in create_connection
+    raise err
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 86, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 699, in urlopen
+    httplib_response = self._make_request(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 394, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 234, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/usr/lib/python3.8/http/client.py", line 1255, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1301, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1250, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1010, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.8/http/client.py", line 950, in send
+    self.connect()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 200, in connect
+    conn = self._new_conn()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 181, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f9a1418c880>: Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 755, in urlopen
+    retries = retries.increment(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 573, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /users/login?username=cos&password=abc (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a1418c880>: Failed to establish a new connection: [Errno 111] Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ubuntu/exchange/django/core/views.py", line 128, in login
+    response = requests.get(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /users/login?username=cos&password=abc (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a1418c880>: Failed to establish a new connection: [Errno 111] Connection refused'))
+[27/Jan/2021 16:32:52] "POST /login/ HTTP/1.1" 500 173138
+Not Found: /favicon.ico
+[27/Jan/2021 16:32:52] "GET /favicon.ico HTTP/1.1" 404 2396
+Not Found: /favicon.ico
+[27/Jan/2021 16:32:52] "GET /favicon.ico HTTP/1.1" 404 2396
+[27/Jan/2021 16:33:52] "POST /login/ HTTP/1.1" 302 0
+[27/Jan/2021 16:34:08] "GET / HTTP/1.1" 302 0
+[27/Jan/2021 16:34:08] "GET /login/ HTTP/1.1" 200 3716
+[27/Jan/2021 16:34:12] "POST /login/ HTTP/1.1" 302 0
+[27/Jan/2021 16:34:36] "POST /login/ HTTP/1.1" 302 0
+[27/Jan/2021 16:34:45] "GET /signup HTTP/1.1" 301 0
+[27/Jan/2021 16:34:45] "GET /signup/ HTTP/1.1" 200 4568
+[27/Jan/2021 16:34:54] "POST /signup/ HTTP/1.1" 302 0
+[27/Jan/2021 16:35:08] "GET /login HTTP/1.1" 301 0
+[27/Jan/2021 16:35:08] "GET /login/ HTTP/1.1" 200 3716
+[27/Jan/2021 16:35:45] "GET / HTTP/1.1" 302 0
+[27/Jan/2021 16:35:46] "GET /login/ HTTP/1.1" 200 3716
+[27/Jan/2021 16:35:49] "POST /login/ HTTP/1.1" 302 0
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 169, in _new_conn
+    conn = connection.create_connection(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 96, in create_connection
+    raise err
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 86, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 699, in urlopen
+    httplib_response = self._make_request(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 394, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 234, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/usr/lib/python3.8/http/client.py", line 1255, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1301, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1250, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1010, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.8/http/client.py", line 950, in send
+    self.connect()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 200, in connect
+    conn = self._new_conn()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 181, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f9a14aef670>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 755, in urlopen
+    retries = retries.increment(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 573, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='54.93.120.171', port=8081): Max retries exceeded with url: /eth (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a14aef670>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/core/views.py", line 58, in get_prices
+    eth_price = float(requests.get('http://54.93.120.171:8081/eth').text)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='54.93.120.171', port=8081): Max retries exceeded with url: /eth (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a14aef670>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+[27/Jan/2021 16:36:04] "GET / HTTP/1.1" 200 8640
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 169, in _new_conn
+    conn = connection.create_connection(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 96, in create_connection
+    raise err
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 86, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 699, in urlopen
+    httplib_response = self._make_request(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 394, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 234, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/usr/lib/python3.8/http/client.py", line 1255, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1301, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1250, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1010, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.8/http/client.py", line 950, in send
+    self.connect()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 200, in connect
+    conn = self._new_conn()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 181, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f9a141fa5e0>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 755, in urlopen
+    retries = retries.increment(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 573, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='54.93.120.171', port=8081): Max retries exceeded with url: /eth (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a141fa5e0>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/core/views.py", line 58, in get_prices
+    eth_price = float(requests.get('http://54.93.120.171:8081/eth').text)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='54.93.120.171', port=8081): Max retries exceeded with url: /eth (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a141fa5e0>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+[27/Jan/2021 16:36:22] "GET / HTTP/1.1" 200 7580
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 169, in _new_conn
+    conn = connection.create_connection(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 96, in create_connection
+    raise err
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 86, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 699, in urlopen
+    httplib_response = self._make_request(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 394, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 234, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/usr/lib/python3.8/http/client.py", line 1255, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1301, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1250, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1010, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.8/http/client.py", line 950, in send
+    self.connect()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 200, in connect
+    conn = self._new_conn()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 181, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f9a142227f0>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 755, in urlopen
+    retries = retries.increment(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 573, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='54.93.120.171', port=8081): Max retries exceeded with url: /eth (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a142227f0>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/core/views.py", line 58, in get_prices
+    eth_price = float(requests.get('http://54.93.120.171:8081/eth').text)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='54.93.120.171', port=8081): Max retries exceeded with url: /eth (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a142227f0>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+[27/Jan/2021 16:36:47] "GET / HTTP/1.1" 200 8640
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 169, in _new_conn
+    conn = connection.create_connection(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 96, in create_connection
+    raise err
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/connection.py", line 86, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 699, in urlopen
+    httplib_response = self._make_request(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 394, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 234, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/usr/lib/python3.8/http/client.py", line 1255, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1301, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1250, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.8/http/client.py", line 1010, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.8/http/client.py", line 950, in send
+    self.connect()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 200, in connect
+    conn = self._new_conn()
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connection.py", line 181, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPConnection object at 0x7f9a1418e250>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 439, in send
+    resp = conn.urlopen(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 755, in urlopen
+    retries = retries.increment(
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 573, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='54.93.120.171', port=8081): Max retries exceeded with url: /eth (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a1418e250>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ubuntu/exchange/django/core/views.py", line 58, in get_prices
+    eth_price = float(requests.get('http://54.93.120.171:8081/eth').text)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 76, in get
+    return request('get', url, params=params, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/api.py", line 61, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 542, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/sessions.py", line 655, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/ubuntu/exchange/django/venv/lib/python3.8/site-packages/requests/adapters.py", line 516, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='54.93.120.171', port=8081): Max retries exceeded with url: /eth (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9a1418e250>: Failed to establish a new connection: [Errno 110] Connection timed out'))
+[27/Jan/2021 16:37:05] "GET / HTTP/1.1" 200 7385
+/home/ubuntu/exchange/django/core/views.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+January 27, 2021 - 16:28:27
+Django version 3.1.5, using settings 'webapp.settings'
+Starting development server at http://0.0.0.0:80/
+Quit the server with CONTROL-C.
+User not authenticated.
+User not authenticated.
+User not authenticated.
+User not authenticated.
+User not authenticated.
+Login API call failed.
+User not authenticated.
+Login API call failed.
+User not authenticated.
+http://localhost:8000/users/test
+{'btc': 6.121088469687775e-05, 'eth': 0.014918499831508562, 'exchange': [{'amount': 1.0, 'from_coin': 'usd', 'time': ['2021-01-24', '09:57:49'], 'to_coin': 'btc'}, {'amount': 1.0, 'from_coin': 'usd', 'time': ['2021-01-24', '09:58:36'], 'to_coin': 'btc'}, {'amount': 20.0, 'from_coin': 'usd', 'time': ['2021-01-24', '10:19:11'], 'to_coin': 'eth'}], 'transfer': [{'amount': 1.0, 'coin': 'usd', 'time': ['2021-01-24', '10:14:14'], 'username': 'cosmin'}, {'amount': -1.0, 'coin': 'usd', 'time': ['2021-01-24', '10:17:05'], 'username': 'cosmin'}, {'amount': -1.0, 'coin': 'usd', 'time': ['2021-01-24', '11:05:35'], 'username': '<script>alert(1)</script>'}], 'usd': 9973.0, 'username': 'test'}
+http://localhost:8000/users/test
+{'btc': 6.121088469687775e-05, 'eth': 0.014918499831508562, 'exchange': [{'amount': 1.0, 'from_coin': 'usd', 'time': ['2021-01-24', '09:57:49'], 'to_coin': 'btc'}, {'amount': 1.0, 'from_coin': 'usd', 'time': ['2021-01-24', '09:58:36'], 'to_coin': 'btc'}, {'amount': 20.0, 'from_coin': 'usd', 'time': ['2021-01-24', '10:19:11'], 'to_coin': 'eth'}], 'transfer': [{'amount': 1.0, 'coin': 'usd', 'time': ['2021-01-24', '10:14:14'], 'username': 'cosmin'}, {'amount': -1.0, 'coin': 'usd', 'time': ['2021-01-24', '10:17:05'], 'username': 'cosmin'}, {'amount': -1.0, 'coin': 'usd', 'time': ['2021-01-24', '11:05:35'], 'username': '<script>alert(1)</script>'}], 'usd': 9973.0, 'username': 'test'}
+User not authenticated.
+http://localhost:8000/users/eyJhbGciOiJIUzUxMiIsImlhdCI6MTYxMTc2NTI1MiwiZXhwIjoxNjExNzY1ODUyfQ.eyJpZCI6NH0.C0ZDTMQ2Vy0S9MbHbntUgQPfbP8-a7b10vqPxJukdl2GTn9QYjcuw__UXg0NQ5d3gk-Ya81Jf8AM_ASW9RmXWw
+{'btc': 0.0, 'eth': 0.0, 'exchange': [], 'transfer': [{'amount': 1.0, 'coin': 'usd', 'time': ['2021-01-24', '10:15:57'], 'username': 'test'}], 'usd': 1.0, 'username': 'cos'}
+http://localhost:8000/users/eyJhbGciOiJIUzUxMiIsImlhdCI6MTYxMTc2NTI1MiwiZXhwIjoxNjExNzY1ODUyfQ.eyJpZCI6NH0.C0ZDTMQ2Vy0S9MbHbntUgQPfbP8-a7b10vqPxJukdl2GTn9QYjcuw__UXg0NQ5d3gk-Ya81Jf8AM_ASW9RmXWw
+{'btc': 0.0, 'eth': 0.0, 'exchange': [], 'transfer': [{'amount': 1.0, 'coin': 'usd', 'time': ['2021-01-24', '10:15:57'], 'username': 'test'}], 'usd': 1.0, 'username': 'cos'}
+http://localhost:8000/users/test
+{'btc': 6.121088469687775e-05, 'eth': 0.014918499831508562, 'exchange': [{'amount': 1.0, 'from_coin': 'usd', 'time': ['2021-01-24', '09:57:49'], 'to_coin': 'btc'}, {'amount': 1.0, 'from_coin': 'usd', 'time': ['2021-01-24', '09:58:36'], 'to_coin': 'btc'}, {'amount': 20.0, 'from_coin': 'usd', 'time': ['2021-01-24', '10:19:11'], 'to_coin': 'eth'}], 'transfer': [{'amount': 1.0, 'coin': 'usd', 'time': ['2021-01-24', '10:14:14'], 'username': 'cosmin'}, {'amount': -1.0, 'coin': 'usd', 'time': ['2021-01-24', '10:17:05'], 'username': 'cosmin'}, {'amount': -1.0, 'coin': 'usd', 'time': ['2021-01-24', '11:05:35'], 'username': '<script>alert(1)</script>'}], 'usd': 9973.0, 'username': 'test'}
+http://localhost:8000/users/test
+{'btc': 6.121088469687775e-05, 'eth': 0.014918499831508562, 'exchange': [{'amount': 1.0, 'from_coin': 'usd', 'time': ['2021-01-24', '09:57:49'], 'to_coin': 'btc'}, {'amount': 1.0, 'from_coin': 'usd', 'time': ['2021-01-24', '09:58:36'], 'to_coin': 'btc'}, {'amount': 20.0, 'from_coin': 'usd', 'time': ['2021-01-24', '10:19:11'], 'to_coin': 'eth'}], 'transfer': [{'amount': 1.0, 'coin': 'usd', 'time': ['2021-01-24', '10:14:14'], 'username': 'cosmin'}, {'amount': -1.0, 'coin': 'usd', 'time': ['2021-01-24', '10:17:05'], 'username': 'cosmin'}, {'amount': -1.0, 'coin': 'usd', 'time': ['2021-01-24', '11:05:35'], 'username': '<script>alert(1)</script>'}], 'usd': 9973.0, 'username': 'test'}
+http://localhost:8000/users/eyJhbGciOiJIUzUxMiIsImlhdCI6MTYxMTc2NTI5NCwiZXhwIjoxNjExNzY1ODk0fQ.eyJpZCI6N30.wbpPTD7diA77rrxmZxDCg4rwYDD6D20Ca-IMU7K34MnRnwhkBn7NaNcanlWtcHMKKCholqPhbCJRNxEApN4VxA
+{'btc': 0.0, 'eth': 0.0, 'exchange': [], 'transfer': [], 'usd': 0.0, 'username': 'stef'}
+http://localhost:8000/users/eyJhbGciOiJIUzUxMiIsImlhdCI6MTYxMTc2NTI5NCwiZXhwIjoxNjExNzY1ODk0fQ.eyJpZCI6N30.wbpPTD7diA77rrxmZxDCg4rwYDD6D20Ca-IMU7K34MnRnwhkBn7NaNcanlWtcHMKKCholqPhbCJRNxEApN4VxA
+{'btc': 0.0, 'eth': 0.0, 'exchange': [], 'transfer': [], 'usd': 0.0, 'username': 'stef'}
+User not authenticated.
+http://localhost:8000/users/eyJhbGciOiJIUzUxMiIsImlhdCI6MTYxMTc2NTI1MiwiZXhwIjoxNjExNzY1ODUyfQ.eyJpZCI6NH0.C0ZDTMQ2Vy0S9MbHbntUgQPfbP8-a7b10vqPxJukdl2GTn9QYjcuw__UXg0NQ5d3gk-Ya81Jf8AM_ASW9RmXWw
+{'btc': 0.0, 'eth': 0.0, 'exchange': [], 'transfer': [{'amount': 1.0, 'coin': 'usd', 'time': ['2021-01-24', '10:15:57'], 'username': 'test'}], 'usd': 1.0, 'username': 'cos'}
+http://localhost:8000/users/eyJhbGciOiJIUzUxMiIsImlhdCI6MTYxMTc2NTI1MiwiZXhwIjoxNjExNzY1ODUyfQ.eyJpZCI6NH0.C0ZDTMQ2Vy0S9MbHbntUgQPfbP8-a7b10vqPxJukdl2GTn9QYjcuw__UXg0NQ5d3gk-Ya81Jf8AM_ASW9RmXWw
+{'btc': 0.0, 'eth': 0.0, 'exchange': [], 'transfer': [{'amount': 1.0, 'coin': 'usd', 'time': ['2021-01-24', '10:15:57'], 'username': 'test'}], 'usd': 1.0, 'username': 'cos'}
+Watching for file changes with StatReloader
+[27/Jan/2021 16:37:12] "GET / HTTP/1.1" 200 7587
+[27/Jan/2021 16:37:12] "GET /static/crypto-icons/styles.css HTTP/1.1" 404 1694
+[27/Jan/2021 16:37:12] "GET /static/crypto-icons/styles.css HTTP/1.1" 404 1694
+[27/Jan/2021 16:37:17] "POST /login/ HTTP/1.1" 302 0
+[27/Jan/2021 16:37:17] "GET / HTTP/1.1" 200 8647
+[27/Jan/2021 16:37:17] "GET /static/crypto-icons/styles.css HTTP/1.1" 404 1699
+[27/Jan/2021 16:37:17] "GET /static/crypto-icons/styles.css HTTP/1.1" 404 1699
+[27/Jan/2021 16:37:27] "GET /logout HTTP/1.1" 301 0
+[27/Jan/2021 16:37:27] "GET /logout/ HTTP/1.1" 302 0
+[27/Jan/2021 16:37:27] "GET / HTTP/1.1" 302 0
+[27/Jan/2021 16:37:27] "GET /login/ HTTP/1.1" 200 3716
+[27/Jan/2021 16:37:29] "GET /signup HTTP/1.1" 301 0
+[27/Jan/2021 16:37:29] "GET /signup/ HTTP/1.1" 200 4568
+[27/Jan/2021 16:37:42] "POST /signup/ HTTP/1.1" 200 4702
+[27/Jan/2021 16:37:50] "POST /signup/ HTTP/1.1" 302 0
+[27/Jan/2021 16:37:50] "GET / HTTP/1.1" 200 7394
+[27/Jan/2021 16:37:51] "GET /static/crypto-icons/styles.css HTTP/1.1" 404 1694
+[27/Jan/2021 16:38:00] "POST / HTTP/1.1" 200 7520
+[27/Jan/2021 16:38:00] "GET /static/crypto-icons/styles.css HTTP/1.1" 404 1694
+[27/Jan/2021 16:38:00] "GET /static/crypto-icons/styles.css HTTP/1.1" 404 1694
+[27/Jan/2021 16:38:06] "GET /logout/ HTTP/1.1" 302 0
+[27/Jan/2021 16:38:06] "GET / HTTP/1.1" 302 0
+[27/Jan/2021 16:38:06] "GET /login/ HTTP/1.1" 200 3716
